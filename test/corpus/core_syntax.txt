@@ -1,0 +1,87 @@
+==================
+Core syntax
+==================
+
+import core from "core"
+Thing :: struct { value: i32, name: str }
+MAX :: 42
+add :: (left: i32, right: i32) -> i32 { return left + right; }
+main :: () {
+  value := add(1, 2)
+  if value >= MAX { print(c"ok\\n") } else { return }
+  match value { 0 => return, 1 => { break }, }
+}
+
+---
+
+(source_file
+  (import_statement
+    (identifier)
+    (string))
+  (type_definition
+    (type_identifier)
+    (struct_definition
+      (struct_field
+        (identifier)
+        (primitive_type))
+      (struct_field
+        (identifier)
+        (primitive_type))))
+  (constant_definition
+    (constant_identifier)
+    (literal
+      (number)))
+  (function_definition
+    (identifier)
+    (parameter_list
+      (parameter
+        (identifier)
+        (primitive_type))
+      (parameter
+        (identifier)
+        (primitive_type)))
+    (primitive_type)
+    (block
+      (return_statement
+        (binary_expression
+          (identifier)
+          (identifier)))))
+  (function_definition
+    (identifier)
+    (parameter_list)
+    (block
+      (expression_statement
+        (assignment_expression
+          (identifier)
+          (call_expression
+            (identifier)
+            (argument_list
+              (literal
+                (number))
+              (literal
+                (number))))))
+      (if_statement
+        (binary_expression
+          (identifier)
+          (constant_identifier))
+        (block
+          (expression_statement
+            (call_expression
+              (identifier)
+              (argument_list
+                (literal
+                  (c_string
+                    (escape_sequence)))))))
+        (block
+          (return_statement)))
+      (match_statement
+        (identifier)
+        (match_arm
+          (literal
+            (number))
+          (return_statement))
+        (match_arm
+          (literal
+            (number))
+          (block
+            (break_statement)))))))

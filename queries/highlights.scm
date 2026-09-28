@@ -1,123 +1,46 @@
-; --- Keywords ---
-[
-  "if"
-  "else"
-  "while"
-  "for"
-  "loop"
-  "match"
-] @keyword.control
-
-[
-  "return"
-  "ret"
-] @keyword.control.return
-
-[
-  "break"
-  "continue"
-] @keyword.control
+(line_comment) @comment
+(block_comment) @comment
 
 [
   "import"
   "from"
-] @keyword.control.import
-
-"struct" @keyword.storage.type
-
-[
+  "struct"
+  "if"
+  "else"
+  "while"
+  "for"
+  "in"
+  "loop"
+  "match"
+  "return"
+  "ret"
+  "break"
+  "continue"
   "and"
   "or"
   "not"
-  "as"
   "is"
-  "in"
-] @keyword.operator
+  "true"
+  "false"
+  "null"
+  "nil"
+  "NONE"
+] @keyword
 
-; --- Functions ---
-(function_definition
-  name: (identifier) @function)
-
-(call_expression
-  function: (identifier) @function.call)
-
-(call_expression
-  function: (field_expression
-    field: (field_identifier) @function.method))
-
-; --- Types & Constants ---
+(function_definition name: (identifier) @function)
+(call_expression function: (identifier) @function.call)
+(call_expression function: (field_expression field: (identifier) @function.method))
 (primitive_type) @type.builtin
 (type_identifier) @type
 (constant_identifier) @constant
-
-; --- Variables & Fields ---
-(parameter_list (identifier) @variable.parameter)
-(struct_field name: (field_identifier) @variable.other.member)
-(field_expression field: (field_identifier) @variable.other.member)
-(identifier) @variable
-
-; --- Literals ---
-(boolean) @constant.builtin.boolean
-(null) @constant.builtin
-(number) @constant.numeric
+(parameter type: (type_identifier) @type)
+(struct_field type: (type_identifier) @type)
+(function_definition return_type: (type_identifier) @type)
+(parameter name: (identifier) @variable.parameter)
+(struct_field name: (identifier) @variable.member)
+(field_expression field: (identifier) @variable.member)
+(number) @number
 (string) @string
 (c_string) @string
-(char) @constant.character
-(escape_sequence) @constant.character.escape
-
-; --- Comments ---
-(line_comment) @comment.line
-(block_comment) @comment.block
-
-; --- Operators & Punctuation ---
-[
-  "="
-  ":="
-  "+="
-  "-="
-  "*="
-  "/="
-  "%="
-  "&="
-  "|="
-  "^="
-  "<<="
-  ">>="
-  "=="
-  "!="
-  "<"
-  "<="
-  ">"
-  ">="
-  "+"
-  "-"
-  "*"
-  "/"
-  "%"
-  "&"
-  "|"
-  "^"
-  "~"
-  "<<"
-  ">>"
-  ".."
-  "->"
-  "=>"
-  "::"
-] @operator
-
-[
-  "("
-  ")"
-  "["
-  "]"
-  "{"
-  "}"
-] @punctuation.bracket
-
-[
-  ","
-  ";"
-  ":"
-  "."
-] @punctuation.delimiter
+(char) @character
+(escape_sequence) @string.escape
