@@ -1,3 +1,6 @@
 (block) @fold
-(struct_definition) @fold
-(block_comment) @fold
+(struct_expression) @fold
+(enum_expression) @fold
+(match_expression) @fold
+(parameter_list) @fold
+(argument_list) @fold

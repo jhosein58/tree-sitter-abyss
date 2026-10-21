@@ -1,46 +1,199 @@
-(line_comment) @comment
-(block_comment) @comment
+; Comments
+(comment) @comment.line
+
+; Keywords - Control
+[
+  "if"
+  "else"
+  "match"
+] @keyword.control.conditional
+
+[
+  "while"
+  "for"
+  "in"
+] @keyword.control.repeat
+
+"ret" @keyword.control.return
+
+[
+  "break"
+  "cont"
+] @keyword.control
+
+; Keywords - Definitions
+"fn" @keyword.function
+
+[
+  "struct"
+  "enum"
+] @keyword.storage.type
 
 [
   "import"
   "from"
-  "struct"
-  "if"
-  "else"
-  "while"
-  "for"
-  "in"
-  "loop"
-  "match"
-  "return"
-  "ret"
-  "break"
-  "continue"
+] @keyword.control.import
+
+; Keywords - Operators
+[
+  "as"
   "and"
   "or"
   "not"
-  "is"
+] @keyword.operator
+
+; Literals
+[
   "true"
   "false"
-  "null"
-  "nil"
-  "NONE"
-] @keyword
+] @constant.builtin.boolean
 
-(function_definition name: (identifier) @function)
-(call_expression function: (identifier) @function.call)
-(call_expression function: (field_expression field: (identifier) @function.method))
-(primitive_type) @type.builtin
-(type_identifier) @type
-(constant_identifier) @constant
-(parameter type: (type_identifier) @type)
-(struct_field type: (type_identifier) @type)
-(function_definition return_type: (type_identifier) @type)
-(parameter name: (identifier) @variable.parameter)
-(struct_field name: (identifier) @variable.member)
-(field_expression field: (identifier) @variable.member)
-(number) @number
+(number) @constant.numeric
 (string) @string
 (c_string) @string
-(char) @character
-(escape_sequence) @string.escape
+(char) @constant.character
+
+; Builtins & Special
+"@" @special
+(builtin_expression
+  name: (identifier) @function.builtin)
+
+"Self" @type.builtin
+"self" @variable.builtin
+
+(primitive_type) @type.builtin
+
+; Functions
+(binding_declaration
+  name: (identifier) @function
+  value: (function_expression))
+
+(call_expression
+  function: (identifier) @function.call)
+
+(call_expression
+  function: (field_expression
+    field: (identifier) @function.method))
+
+; Types
+(generic_type
+  name: (identifier) @type)
+
+(struct_field
+  type: (identifier) @type)
+
+(variable_declaration
+  type: (identifier) @type)
+
+(function_expression
+  return_type: (identifier) @type)
+
+(function_type
+  return_type: (identifier) @type)
+
+(pointer_type
+  type: (identifier) @type)
+
+(array_type
+  element_type: (identifier) @type)
+
+(cast_expression
+  type: (identifier) @type)
+
+(enum_expression
+  backing_type: (identifier) @type)
+
+(typed_struct_initializer
+  type: (identifier) @type)
+
+; Types bound to struct or enum
+(binding_declaration
+  name: (identifier) @type
+  value: [(struct_expression) (enum_expression)])
+
+; PascalCase convention for types
+((identifier) @type
+ (#match? @type "^[A-Z][a-zA-Z0-9_]*$"))
+
+; Enum Variants
+(enum_variant
+  name: (identifier) @type.enum.variant)
+
+; Variables and Parameters
+(parameter
+  name: (identifier) @variable.parameter)
+
+(for_statement
+  variables: (identifier) @variable)
+
+(match_expression
+  binder: (identifier) @variable)
+
+(variable_declaration
+  name: (identifier) @variable)
+
+(import_item
+  name: (identifier) @variable
+  alias: (identifier)? @variable)
+
+(field_expression
+  field: (identifier) @variable.other.member)
+
+(field_initializer
+  name: (identifier) @variable.other.member)
+
+(struct_field
+  name: (identifier) @variable.other.member)
+
+; Operators
+[
+  "::"
+  ":="
+  "="
+  "+="
+  "-="
+  "*="
+  "/="
+  "%="
+  "&="
+  "|="
+  "^="
+  "<<="
+  ">>="
+  "+"
+  "-"
+  "*"
+  "/"
+  "%"
+  "&"
+  "|"
+  "^"
+  "~"
+  "<<"
+  ">>"
+  "=="
+  "!="
+  "<"
+  "<="
+  ">"
+  ">="
+  "&&"
+  "**"
+] @operator
+
+; Delimiters & Punctuation
+[
+  "("
+  ")"
+  "["
+  "]"
+  "{"
+  "}"
+] @punctuation.bracket
+
+[
+  ","
+  ";"
+  ":"
+  "."
+] @punctuation.delimiter
