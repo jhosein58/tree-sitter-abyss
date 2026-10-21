@@ -2,86 +2,262 @@
 Core syntax
 ==================
 
-import core from "core"
-Thing :: struct { value: i32, name: str }
-MAX :: 42
-add :: (left: i32, right: i32) -> i32 { return left + right; }
-main :: () {
-  value := add(1, 2)
-  if value >= MAX { print(c"ok\\n") } else { return }
-  match value { 0 => return, 1 => { break }, }
+import Vec from "std/collections/vec.a"
+import Arena, Str as String from "std/prelude.a"
+
+Point :: struct {
+    x i32
+    y i32
+    new :: fn(x, y i32) Self {
+        Point.{ x: x, y: y }
+    }
+}
+
+Color :: enum {
+    red,
+    green,
+    blue
+}
+
+add :: fn(x, y i32) i32 {
+    ret x + y
+}
+
+main :: fn() {
+    p := Point.new(1, 2)
+    val := 42
+    if val > 0 {
+        ret
+    } else {
+        ret
+    }
+
+    while val > 0 {
+        val = val - 1
+        if val == 5 { cont }
+        break
+    }
+
+    for item in list {
+        val = val + item
+    }
+
+    match p.x {
+        0 { ret }
+        1, 2 { val = 10 }
+        else { val = 20 }
+    }
+
+    s := @sizeof(u32)
+    lit := c"abyss\n"
 }
 
 ---
 
 (source_file
   (import_statement
-    (identifier)
-    (string))
-  (type_definition
-    (type_identifier)
-    (struct_definition
+    (import_item
+      name: (identifier))
+    source: (string))
+  (import_statement
+    (import_item
+      name: (identifier))
+    (import_item
+      name: (identifier)
+      alias: (identifier))
+    source: (string))
+  (binding_declaration
+    name: (identifier)
+    value: (struct_expression
       (struct_field
-        (identifier)
-        (primitive_type))
+        name: (identifier)
+        type: (primitive_type))
       (struct_field
-        (identifier)
-        (primitive_type))))
-  (constant_definition
-    (constant_identifier)
-    (literal
-      (number)))
-  (function_definition
-    (identifier)
-    (parameter_list
-      (parameter
-        (identifier)
-        (primitive_type))
-      (parameter
-        (identifier)
-        (primitive_type)))
-    (primitive_type)
-    (block
-      (return_statement
-        (binary_expression
-          (identifier)
-          (identifier)))))
-  (function_definition
-    (identifier)
-    (parameter_list)
-    (block
-      (expression_statement
-        (assignment_expression
-          (identifier)
-          (call_expression
-            (identifier)
-            (argument_list
+        name: (identifier)
+        type: (primitive_type))
+      (binding_declaration
+        name: (identifier)
+        value: (function_expression
+          parameters: (parameter_list
+            (parameter
+              name: (identifier)
+              name: (identifier)
+              type: (primitive_type)))
+          body: (block
+            (expression_statement
+              (typed_struct_initializer
+                type: (identifier)
+                (field_initializer
+                  name: (identifier)
+                  value: (identifier))
+                (field_initializer
+                  name: (identifier)
+                  value: (identifier)))))))))
+  (binding_declaration
+    name: (identifier)
+    value: (enum_expression
+      (enum_variant
+        name: (identifier))
+      (enum_variant
+        name: (identifier))
+      (enum_variant
+        name: (identifier))))
+  (binding_declaration
+    name: (identifier)
+    value: (function_expression
+      parameters: (parameter_list
+        (parameter
+          name: (identifier)
+          name: (identifier)
+          type: (primitive_type)))
+      return_type: (primitive_type)
+      body: (block
+        (return_statement
+          (binary_expression
+            left: (identifier)
+            right: (identifier))))))
+  (binding_declaration
+    name: (identifier)
+    value: (function_expression
+      parameters: (parameter_list)
+      body: (block
+        (variable_declaration
+          name: (identifier)
+          value: (call_expression
+            function: (field_expression
+              argument: (identifier)
+              field: (identifier))
+            arguments: (argument_list
               (literal
                 (number))
               (literal
-                (number))))))
-      (if_statement
-        (binary_expression
-          (identifier)
-          (constant_identifier))
-        (block
-          (expression_statement
-            (call_expression
-              (identifier)
-              (argument_list
-                (literal
-                  (c_string
-                    (escape_sequence)))))))
-        (block
-          (return_statement)))
-      (match_statement
-        (identifier)
-        (match_arm
-          (literal
-            (number))
-          (return_statement))
-        (match_arm
-          (literal
-            (number))
-          (block
-            (break_statement)))))))
+                (number)))))
+        (variable_declaration
+          name: (identifier)
+          value: (literal
+            (number)))
+        (expression_statement
+          (if_expression
+            condition: (binary_expression
+              left: (identifier)
+              right: (literal
+                (number)))
+            consequence: (block
+              (return_statement))
+            alternative: (block
+              (return_statement))))
+        (while_statement
+          condition: (binary_expression
+            left: (identifier)
+            right: (literal
+              (number)))
+          body: (block
+            (expression_statement
+              (assignment_expression
+                left: (identifier)
+                right: (binary_expression
+                  left: (identifier)
+                  right: (literal
+                    (number)))))
+            (expression_statement
+              (if_expression
+                condition: (binary_expression
+                  left: (identifier)
+                  right: (literal
+                    (number)))
+                consequence: (block
+                  (continue_statement))))
+            (break_statement)))
+        (for_statement
+          variables: (identifier)
+          iterators: (identifier)
+          body: (block
+            (expression_statement
+              (assignment_expression
+                left: (identifier)
+                right: (binary_expression
+                  left: (identifier)
+                  right: (identifier))))))
+        (expression_statement
+          (match_expression
+            value: (field_expression
+              argument: (identifier)
+              field: (identifier))
+            (match_arm
+              pattern: (literal
+                (number))
+              body: (block
+                (return_statement)))
+            (match_arm
+              pattern: (literal
+                (number))
+              pattern: (literal
+                (number))
+              body: (block
+                (expression_statement
+                  (assignment_expression
+                    left: (identifier)
+                    right: (literal
+                      (number))))))
+            (match_arm
+              body: (block
+                (expression_statement
+                  (assignment_expression
+                    left: (identifier)
+                    right: (literal
+                      (number))))))))
+        (variable_declaration
+          name: (identifier)
+          value: (builtin_expression
+            name: (identifier)
+            arguments: (argument_list
+              (primitive_type))))
+        (variable_declaration
+          name: (identifier)
+          value: (literal
+            (c_string)))))))
+
+==================
+Match with binder
+==================
+
+print_value :: fn(v i32 | bool) {
+    match val in v {
+        i32 { print_i32(val) }
+        bool { print_bool(val) }
+    }
+}
+
+---
+
+(source_file
+  (binding_declaration
+    name: (identifier)
+    value: (function_expression
+      parameters: (parameter_list
+        (parameter
+          name: (identifier)
+          type: (union_type
+            left: (primitive_type)
+            right: (primitive_type))))
+      body: (block
+        (expression_statement
+          (match_expression
+            binder: (identifier)
+            value: (identifier)
+            (match_arm
+              pattern: (primitive_type)
+              body: (block
+                (expression_statement
+                  (call_expression
+                    function: (identifier)
+                    arguments: (argument_list
+                      (identifier))))))
+            (match_arm
+              pattern: (primitive_type)
+              body: (block
+                (expression_statement
+                  (call_expression
+                    function: (identifier)
+                    arguments: (argument_list
+                      (identifier))))))))))))
