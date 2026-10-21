@@ -18,7 +18,11 @@
     "queries/*",
     "src/**"
   ],
-  "author": "",
+  "author": "jhosein58",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jhosein58/tree-sitter-abyss.git"
+  },
   "license": "MIT",
   "dependencies": {
     "node-addon-api": "^7.1.0",

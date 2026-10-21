@@ -1,0 +1,33 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "abyss",
+      "camelcase": "Abyss",
+      "scope": "source.abyss",
+      "file-types": ["a"],
+      "injection-regex": "^abyss$"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Abyss grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "jhosein58"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/jhosein58/tree-sitter-abyss"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}
