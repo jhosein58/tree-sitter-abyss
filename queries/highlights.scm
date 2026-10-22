@@ -19,6 +19,7 @@
 [
   "break"
   "cont"
+  "cmpt"
 ] @keyword.control
 
 ; Keywords - Definitions

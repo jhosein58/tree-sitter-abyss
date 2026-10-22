@@ -32,6 +32,10 @@
           "named": true
         },
         {
+          "type": "comptime_expression",
+          "named": true
+        },
+        {
           "type": "enum_expression",
           "named": true
         },
@@ -185,6 +189,10 @@
             "named": true
           },
           {
+            "type": "comptime_expression",
+            "named": true
+          },
+          {
             "type": "enum_expression",
             "named": true
           },
@@ -325,6 +333,10 @@
             "named": true
           },
           {
+            "type": "comptime_expression",
+            "named": true
+          },
+          {
             "type": "enum_expression",
             "named": true
           },
@@ -418,6 +430,10 @@
           },
           {
             "type": "cast_expression",
+            "named": true
+          },
+          {
+            "type": "comptime_expression",
             "named": true
           },
           {
@@ -589,6 +605,10 @@
             "named": true
           },
           {
+            "type": "comptime_expression",
+            "named": true
+          },
+          {
             "type": "enum_expression",
             "named": true
           },
@@ -692,6 +712,10 @@
           },
           {
             "type": "cast_expression",
+            "named": true
+          },
+          {
+            "type": "comptime_expression",
             "named": true
           },
           {
@@ -884,6 +908,10 @@
             "named": true
           },
           {
+            "type": "comptime_expression",
+            "named": true
+          },
+          {
             "type": "enum_expression",
             "named": true
           },
@@ -1019,6 +1047,110 @@
           },
           {
             "type": "cast_expression",
+            "named": true
+          },
+          {
+            "type": "comptime_expression",
+            "named": true
+          },
+          {
+            "type": "enum_expression",
+            "named": true
+          },
+          {
+            "type": "field_expression",
+            "named": true
+          },
+          {
+            "type": "function_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if_expression",
+            "named": true
+          },
+          {
+            "type": "index_expression",
+            "named": true
+          },
+          {
+            "type": "literal",
+            "named": true
+          },
+          {
+            "type": "match_expression",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "primitive_type",
+            "named": true
+          },
+          {
+            "type": "self",
+            "named": false
+          },
+          {
+            "type": "struct_expression",
+            "named": true
+          },
+          {
+            "type": "struct_initializer",
+            "named": true
+          },
+          {
+            "type": "typed_struct_initializer",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "comptime_expression",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "assignment_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "builtin_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "cast_expression",
+            "named": true
+          },
+          {
+            "type": "comptime_expression",
             "named": true
           },
           {
@@ -1195,6 +1327,10 @@
             "named": true
           },
           {
+            "type": "comptime_expression",
+            "named": true
+          },
+          {
             "type": "enum_expression",
             "named": true
           },
@@ -1291,6 +1427,10 @@
           "named": true
         },
         {
+          "type": "comptime_expression",
+          "named": true
+        },
+        {
           "type": "enum_expression",
           "named": true
         },
@@ -1379,6 +1519,10 @@
           },
           {
             "type": "cast_expression",
+            "named": true
+          },
+          {
+            "type": "comptime_expression",
             "named": true
           },
           {
@@ -1498,6 +1642,10 @@
             "named": true
           },
           {
+            "type": "comptime_expression",
+            "named": true
+          },
+          {
             "type": "enum_expression",
             "named": true
           },
@@ -1605,6 +1753,10 @@
           },
           {
             "type": "cast_expression",
+            "named": true
+          },
+          {
+            "type": "comptime_expression",
             "named": true
           },
           {
@@ -1916,6 +2068,10 @@
             "named": true
           },
           {
+            "type": "comptime_expression",
+            "named": true
+          },
+          {
             "type": "enum_expression",
             "named": true
           },
@@ -2074,6 +2230,10 @@
             "named": true
           },
           {
+            "type": "comptime_expression",
+            "named": true
+          },
+          {
             "type": "enum_expression",
             "named": true
           },
@@ -2161,6 +2321,10 @@
           },
           {
             "type": "cast_expression",
+            "named": true
+          },
+          {
+            "type": "comptime_expression",
             "named": true
           },
           {
@@ -2305,6 +2469,10 @@
             "named": true
           },
           {
+            "type": "comptime_expression",
+            "named": true
+          },
+          {
             "type": "enum_expression",
             "named": true
           },
@@ -2408,6 +2576,10 @@
           },
           {
             "type": "cast_expression",
+            "named": true
+          },
+          {
+            "type": "comptime_expression",
             "named": true
           },
           {
@@ -2591,6 +2763,10 @@
         },
         {
           "type": "cast_expression",
+          "named": true
+        },
+        {
+          "type": "comptime_expression",
           "named": true
         },
         {
@@ -2781,6 +2957,10 @@
           "named": true
         },
         {
+          "type": "comptime_expression",
+          "named": true
+        },
+        {
           "type": "enum_expression",
           "named": true
         },
@@ -2842,7 +3022,6 @@
   {
     "type": "source_file",
     "named": true,
-    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -3012,6 +3191,10 @@
             "named": true
           },
           {
+            "type": "comptime_expression",
+            "named": true
+          },
+          {
             "type": "enum_expression",
             "named": true
           },
@@ -3115,6 +3298,10 @@
           },
           {
             "type": "cast_expression",
+            "named": true
+          },
+          {
+            "type": "comptime_expression",
             "named": true
           },
           {
@@ -3390,6 +3577,10 @@
             "named": true
           },
           {
+            "type": "comptime_expression",
+            "named": true
+          },
+          {
             "type": "enum_expression",
             "named": true
           },
@@ -3493,6 +3684,10 @@
           },
           {
             "type": "cast_expression",
+            "named": true
+          },
+          {
+            "type": "comptime_expression",
             "named": true
           },
           {
@@ -3740,9 +3935,12 @@
     "named": true
   },
   {
+    "type": "cmpt",
+    "named": false
+  },
+  {
     "type": "comment",
-    "named": true,
-    "extra": true
+    "named": true
   },
   {
     "type": "cont",
@@ -3882,10 +4080,6 @@
   },
   {
     "type": "u8",
-    "named": false
-  },
-  {
-    "type": "unit",
     "named": false
   },
   {

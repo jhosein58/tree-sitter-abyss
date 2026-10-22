@@ -121,6 +121,7 @@ module.exports = grammar({
       $.enum_expression,
       $.if_expression,
       $.match_expression,
+      $.comptime_expression,
       $.block,
       $.parenthesized_expression,
       $.identifier,
@@ -334,6 +335,11 @@ module.exports = grammar({
       optional(choice(',', ';')),
     ),
 
+    comptime_expression: $ => prec(PREC.UNARY, seq(
+      'cmpt',
+      field('body', $._expression),
+    )),
+
     parenthesized_expression: $ => seq('(', $._expression, ')'),
 
     _type: $ => choice(
@@ -385,7 +391,7 @@ module.exports = grammar({
       'u8', 'u16', 'u32', 'u64', 'u128',
       'i8', 'i16', 'i32', 'i64', 'i128',
       'f16', 'f32', 'f64', 'f128',
-      'bool', 'unit', 'type',
+      'bool', 'type',
     ),
 
     literal: $ => choice(

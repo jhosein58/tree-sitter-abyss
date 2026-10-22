@@ -1,5 +1,4 @@
 {
-  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "abyss",
   "word": "identifier",
   "rules": {
@@ -505,6 +504,10 @@
         {
           "type": "SYMBOL",
           "name": "match_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comptime_expression"
         },
         {
           "type": "SYMBOL",
@@ -2340,6 +2343,27 @@
         }
       ]
     },
+    "comptime_expression": {
+      "type": "PREC",
+      "value": 12,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "cmpt"
+          },
+          {
+            "type": "FIELD",
+            "name": "body",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          }
+        ]
+      }
+    },
     "parenthesized_expression": {
       "type": "SEQ",
       "members": [
@@ -2709,10 +2733,6 @@
         },
         {
           "type": "STRING",
-          "value": "unit"
-        },
-        {
-          "type": "STRING",
           "value": "type"
         }
       ]
@@ -2965,6 +2985,5 @@
   "precedences": [],
   "externals": [],
   "inline": [],
-  "supertypes": [],
-  "reserved": {}
+  "supertypes": []
 }
